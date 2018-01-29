@@ -1,0 +1,13 @@
+{
+  "pubsub": {
+    "projectId": "<< Project ID >>",
+    "keyFilename": "./config/key.json",
+    "topicName": "<< Topic Name >>",
+    "subscriptionName": "<< Subscription Name >>"
+  },
+  "loggly": {
+    "token": "<< Secret Token >>",
+    "subdomain": "<< Your Domain >>",
+    "json": true
+  }
+}
