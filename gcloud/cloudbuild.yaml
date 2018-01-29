@@ -8,7 +8,7 @@ steps:
   - 'set'
   - 'image'
   - 'deployment/logproc'
-  - 'hserver=asia.gcr.io/$PROJECT_ID/logproc:$COMMIT_SHA'
+  - 'logproc=asia.gcr.io/$PROJECT_ID/logproc:$COMMIT_SHA'
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=hypo'
