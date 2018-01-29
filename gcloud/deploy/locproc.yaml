@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: logproc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: logproc
+    spec:
+      containers:
+        - image: asia.gcr.io/ggv-notetool/logproc
+          imagePullPolicy: Always
+          name: logproc
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+          volumeMounts:
+            - name: "logproc-conf"
+              mountPath: "/app/config"
+      volumes:
+        - name: "logproc-conf"
+          configMap:
+            name: "logproc-conf"
+            items:
+              - key: "default.json"
+                path: "default.json"
+              - key: "key.json"
+                path: "key.json"

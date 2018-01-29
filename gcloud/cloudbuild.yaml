@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia.gcr.io/$PROJECT_ID/logproc', '-t', 'asia.gcr.io/$PROJECT_ID/logproc:$COMMIT_SHA', '-f', './Dockerfile', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ["push", "asia.gcr.io/$PROJECT_ID/logproc"]
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/logproc'
+  - 'hserver=asia.gcr.io/$PROJECT_ID/logproc:$COMMIT_SHA'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=hypo'
+
